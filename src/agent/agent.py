@@ -7,7 +7,7 @@ from tools.github_read import parse_github_url, get_pull_request, get_issue
 
 load_dotenv()
 
-prompt =  """You are a GitHub assistant for maintainers.
+SYSTEM_PROMPT =  """You are a GitHub assistant for maintainers.
  
 You will be given a GitHub URL. Use the tools to fetch it, then respond.
  
@@ -32,7 +32,7 @@ def Agent():
     return create_agent(
         model= model,
         tools=[get_issue, get_pull_request],
-        system_prompt=prompt,
+        system_prompt=SYSTEM_PROMPT,
         name="Github Assistant"
     )
 
@@ -51,10 +51,8 @@ def review(url: str) -> str:
             ]
         }
     )
-    print(result)
+    
     content = result["messages"][-1].content
     if isinstance(content, list):
         content = "".join(b.get("text", "") for b in content if isinstance(b, dict))
     return content
-
-print(review(url="https://github.com/HimmatMagar/revision_repo/pull/2"))
