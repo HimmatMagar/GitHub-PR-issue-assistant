@@ -8,6 +8,8 @@ dependencies = [
     "fastapi>=0.143.0",
     "httpx>=0.28.1",
     "langchain>=1.4.4",
+    "langchain-google-genai>=4.4.1",
+    "langchain-huggingface>=1.2.3",
     "langchain-openai>=1.7.0",
     "langgraph>=1.2.14",
     "pygithub>=2.10.0",
@@ -16,3 +18,6 @@ dependencies = [
     "rich>=15.0.0",
     "uvicorn>=0.54.0",
 ]
+
+[tool.setuptools.packages.find]
+where = ["src"]
